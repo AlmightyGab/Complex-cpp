@@ -1,34 +1,35 @@
-#include "Complex.h"
-#include <iostream>
 #include <cmath>
+#include <sstream>
 
-Complex::Complex(double r, double i) 
-  : real(r), imag(i)
-{
-  ++s_count;
-};
+#include "Complex.h"
 
 int Complex::s_count = 0;
 
-void Complex::print() const {
-  std::cout << real << " + " << imag << "i" << std::endl;
-};
+Complex::Complex(double r, double i) 
+  : _real(r), _imag(i)
+{
+  ++s_count;
+}
 
-double Complex::getReal() const {
-  return real;
-};
+Complex::~Complex()
+{
+  --s_count;
+}
 
-double Complex::getImag() const {
-  return imag;
-};
+Complex::operator std::string() const {
+  //auto output = static_cast<std::string>(_real )<< " + " << static_cast<std::string>(_imag) << "i";
+  std::stringstream output;
+  output << _real << " + " << _imag << "i";
+  return output.str();
+}
 
-double Complex::getNorm() const {
-  return std::sqrt(std::pow(real, 2) + std::pow(imag, 2));
-};
+double Complex::norm() const {
+  return std::sqrt(std::pow(_real, 2) + std::pow(_imag, 2));
+}
 
 Complex Complex::conjugate() const {
-  return Complex(real, -imag);
-};
+  return Complex(_real, -_imag);
+}
 
 int Complex::getInstanceCount() {
   return s_count;
