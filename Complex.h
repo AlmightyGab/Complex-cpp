@@ -1,19 +1,25 @@
 #ifndef COMPLEX_H
 #define COMPLEX_H
 
+#include <string>
+
 class Complex {
 public:
   // Constructor
   Complex(double real_value, double imag_value);
+  virtual ~Complex();
   
   // Display the number
-  void print() const;
+  operator std::string() const;
 
   // Getter functions
-  double getReal() const;
-  double getImag() const;
-  double getNorm() const;
-  
+  inline double real() const { return _real; }
+  inline double& real() { return _real; }
+  inline double imag() const { return _imag; }
+  inline double& imag() { return _imag; };
+
+  double norm() const;
+
   // conjugate function
   Complex conjugate() const;
 
@@ -22,8 +28,8 @@ public:
 
 private:
   // Private attributes (per-instance)
-  int real;
-  int imag;
+  double _real;
+  double _imag;
 
   // Private static data member
   static int s_count;
