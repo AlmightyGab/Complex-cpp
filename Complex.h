@@ -12,7 +12,7 @@ public:
   // Display the number
   operator std::string() const;
 
-  // Getter functions
+  // Get/setter functions
   inline double real() const { return _real; }
   inline double& real() { return _real; }
   inline double imag() const { return _imag; }
